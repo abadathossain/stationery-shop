@@ -18,11 +18,7 @@ const updateProductDB = async (
   _id: string,
   updateData: Partial<Product>
 ): Promise<Product | null> => {
-  const result = await ProductModel.findOneAndUpdate(
-    { _id },
-    updateData,
-    { new: true } // Ensures the updated document is returned
-  );
+  const result = await ProductModel.findOneAndUpdate({ _id }, updateData);
   return result;
 };
 
