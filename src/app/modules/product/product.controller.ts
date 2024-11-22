@@ -14,15 +14,37 @@ const createProduct = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (err) {
-    console.log(err);
-    // res.status(500).json({
-    //   success: false,
-    //   message: "Something went wrong",
-    //   error: err,
-    // });
+    // console.log(err);
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+      error: err,
+    });
+  }
+};
+const getAllProducts = async (req: Request, res: Response) => {
+  try {
+    // // const { product: productData } = req.body;
+    // const product = req.body;
+
+    const result = await ProductServices.getAllProductsFromDB();
+
+    res.status(200).json({
+      success: true,
+      message: "Product is reeeead succesfully",
+      data: result,
+    });
+  } catch (err) {
+    // console.log(err);
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+      error: err,
+    });
   }
 };
 
 export const ProductControllers = {
   createProduct,
+  getAllProducts,
 };
