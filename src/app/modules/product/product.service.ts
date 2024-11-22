@@ -21,10 +21,17 @@ const updateProductDB = async (
   const result = await ProductModel.findOneAndUpdate({ _id }, updateData);
   return result;
 };
+const deleteSingleProductsFromDB = async (
+  _id: string
+): Promise<Product | null> => {
+  const result = await ProductModel.findOneAndDelete({ _id });
+  return result;
+};
 
 export const ProductServices = {
   createProductIntoDB,
   getAllProductsFromDB,
   getSingleProductsFromDB,
   updateProductDB,
+  deleteSingleProductsFromDB,
 };
