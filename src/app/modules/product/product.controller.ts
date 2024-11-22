@@ -41,10 +41,9 @@ const getAllProducts = async (req: Request, res: Response) => {
 };
 const getSingleProduct = async (req: Request, res: Response) => {
   try {
-    const productId = req.params._id;
+    const productId = req.params.productId;
 
     const result = await ProductServices.getSingleProductsFromDB(productId);
-    console.log(result);
 
     res.status(200).json({
       success: true,
@@ -60,9 +59,33 @@ const getSingleProduct = async (req: Request, res: Response) => {
     });
   }
 };
+const updateSingleProduct = async (req: Request, res: Response) => {
+  try {
+    const productId = req.params.productId;
+    const updateData = req.body;
+
+    const result = await ProductServices.updateProductDB(productId, updateData);
+    if (!result) {
+      res.status(404).json({
+        success: false,
+        message: "Student not found",
+      });
+      return;
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Student is updated successfully",
+      data: result,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 export const ProductControllers = {
   createProduct,
   getAllProducts,
   getSingleProduct,
+  updateSingleProduct,
 };
