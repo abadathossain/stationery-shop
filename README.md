@@ -30,6 +30,12 @@ You can check out [the typescript GitHub repository](https://github.com/abadatho
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
+[vercel deploy link](https://stationery-shop-ten.vercel.app/)
+
+[vercel deploy link for get products](https://stationery-shop-ten.vercel.app/api/v1/products/)
+
+[github repository link for my project](https://github.com/abadathossain/stationery-shop)
+
 # stationary-shop-server System Authentication Service
 
 This is the documentation for the Authentication Service component of the stationary-shop-server System. It is built using TypeScript, Express.js, Zod validation, MongoDB and mongoose.
