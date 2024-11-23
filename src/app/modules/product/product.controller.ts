@@ -65,14 +65,14 @@ const updateSingleProduct = async (req: Request, res: Response) => {
     if (!result) {
       res.status(404).json({
         status: false,
-        message: "Student not found",
+        message: "Product not found",
       });
       return;
     }
 
     res.status(200).json({
       status: true,
-      message: "Student is updated successfully",
+      message: "Product is updated successfully",
       data: result,
     });
   } catch (err) {

@@ -50,12 +50,11 @@ const getRevenue = async (req: Request, res: Response) => {
       },
     });
   } catch (err) {
-    // res.status(500).json({
-    //   message: "Something went wrong",
-    //   status: false,
-    //   error: err.message,
-    // });
-    console.log(err);
+    res.status(500).json({
+      status: false,
+      message: "Something went wrong",
+      error: err,
+    });
   }
 };
 

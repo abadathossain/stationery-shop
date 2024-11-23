@@ -44,7 +44,11 @@ const ProductSchema = new Schema<Product>(
   },
   {
     timestamps: true,
+    versionKey: false,
   }
 );
 
-export const ProductModel = model<Product>("Product", ProductSchema);
+export const ProductModel = model<Product>(
+  "Stationery Products",
+  ProductSchema
+);

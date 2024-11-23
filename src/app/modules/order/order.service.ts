@@ -10,20 +10,32 @@ const getAllOrderFromDB = async () => {
   return result;
 };
 
+// using aggregate for calculated revenue
+
 const calculateTotalRevenue = async () => {
   const result = await OrderModel.aggregate([
+    {
+      $project: {
+        _id: 1,
+        product: 1,
+        quantity: 1,
+        totalPrice: 1,
+        calculatedRevenue: {
+          $multiply: ["$totalPrice", "$quantity"],
+        },
+      },
+    },
     {
       $group: {
         _id: null,
         totalRevenue: {
-          $sum: "$totalPrice",
+          $sum: "$calculatedRevenue",
         },
       },
     },
     {
       $project: {
         _id: 0,
-        totalPrice: 1,
         totalRevenue: 1,
       },
     },

@@ -1,6 +1,8 @@
-# stationary-shop-server
+# stationary-shop
 
-This is my assignmfent project and language uses [typescript](https://www.typescriptlang.org/docs/) project
+This is my assignment project and language uses [typescript](https://www.typescriptlang.org/docs/) project.
+For server uses express.js and node.js.
+For database using mongoDB with mongoose.
 
 ## Getting Started
 
@@ -9,6 +11,8 @@ First, run the development server:
 ```bash
  npm run start:dev
  npm run lint
+ npm run build
+ vercel --prod
 
 ```
 

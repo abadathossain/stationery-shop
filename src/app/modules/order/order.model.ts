@@ -30,4 +30,4 @@ const ProductSchema = new Schema<Order>(
   }
 );
 
-export const OrderModel = model<Order>("Order", ProductSchema);
+export const OrderModel = model<Order>("Orders", ProductSchema);
