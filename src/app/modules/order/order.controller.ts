@@ -26,7 +26,7 @@ const getAllOrders = async (req: Request, res: Response) => {
 
     res.status(200).json({
       status: true,
-      message: "Products retrieved successfully",
+      message: "Orders retrieved successfully",
       data: result,
     });
   } catch (err) {
