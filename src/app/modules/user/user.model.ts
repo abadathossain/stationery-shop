@@ -23,12 +23,22 @@ const UserSchema = new Schema<IUser>(
     },
     password: { type: String, required: true },
     role: { type: String, enum: ["admin", "user"], required: true },
-    isActive: { type: Boolean, enum: ["inactive", "active"], required: true },
+    userStatus: {
+      type: String,
+      enum: ["active", "inactive"],
+      required: true,
+    },
   },
   {
     timestamps: true,
     versionKey: false,
   }
 );
+
+// pre hook
+UserSchema.pre("find", function (this, next) {
+  this.find({ userStatus: { $eq: "active" } });
+  next();
+});
 
 export const UserModel = model<IUser>("User", UserSchema);

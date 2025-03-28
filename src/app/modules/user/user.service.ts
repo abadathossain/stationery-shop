@@ -18,7 +18,9 @@ const updateUserDB = async (
   _id: string,
   updateData: Partial<IUser>
 ): Promise<IUser | null> => {
-  const result = await UserModel.findOneAndUpdate({ _id }, updateData);
+  const result = await UserModel.findOneAndUpdate({ _id }, updateData, {
+    new: true,
+  });
   return result;
 };
 const deleteSingleUserFromDB = async (_id: string): Promise<IUser | null> => {

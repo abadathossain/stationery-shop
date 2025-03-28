@@ -86,12 +86,11 @@ const updateSingleUser = async (req: Request, res: Response) => {
 const delteSingleUser = async (req: Request, res: Response) => {
   try {
     const userId = req.params.userId;
-    const result = await UserServices.deleteSingleUserFromDB(userId);
+    await UserServices.deleteSingleUserFromDB(userId);
 
     res.status(200).json({
       status: true,
       message: "Single User delete successfully",
-      data: result,
     });
   } catch (err) {
     res.status(500).json({
