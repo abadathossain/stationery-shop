@@ -10,8 +10,8 @@ app.use(express.json());
 app.use(cors());
 
 // application routes
-app.use("/api/products", ProductRoutes);
-app.use("/api/orders", OrderRoutes);
+app.use("/api", ProductRoutes);
+app.use("/api", OrderRoutes);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello my Stationary Shop!");

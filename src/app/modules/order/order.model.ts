@@ -8,9 +8,9 @@ const ProductSchema = new Schema<Order>(
       required: true,
       match: [/\S+@\S+\.\S+/, "Invalid email format"],
     },
-    product: {
+    productId: {
       type: String,
-      ref: "ProductId",
+      ref: "productId",
       required: true,
     },
     quantity: {
