@@ -33,6 +33,11 @@ const ProductSchema = new Schema<Order>(
 
       min: 0,
     },
+    status: {
+      type: String,
+      enum: ["pending", "completed", "cancelled"],
+      default: "pending",
+    },
   },
   {
     timestamps: true,

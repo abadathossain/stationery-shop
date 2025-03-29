@@ -5,4 +5,6 @@ export type Order = {
   quantity: number;
   unitPrice: number;
   totalPrice: number;
+  status: "pending" | "completed" | "cancelled";
+  stock: number;
 };

@@ -38,7 +38,7 @@ const ProductSchema = new Schema<Product>(
       min: 0,
     },
     inStock: {
-      type: Boolean,
+      type: Number,
       required: true,
     },
   },
