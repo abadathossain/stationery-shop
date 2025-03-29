@@ -41,4 +41,12 @@ UserSchema.pre("find", function (this, next) {
   next();
 });
 
+// hook -> post
+UserSchema.post("find", function (docs, next) {
+  docs.forEach((doc: IUser) => {
+    doc.name = doc.name.toLowerCase();
+  });
+  next();
+});
+
 export const UserModel = model<IUser>("User", UserSchema);
