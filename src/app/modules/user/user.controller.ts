@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 import { UserServices } from "./user.service";
+import sendResponse from "../../utils/sendResponse";
+import { StatusCodes } from "http-status-codes";
 
 const createUser = async (req: Request, res: Response) => {
   try {
@@ -7,9 +9,15 @@ const createUser = async (req: Request, res: Response) => {
 
     const result = await UserServices.createUserIntoDB(user);
 
-    res.status(200).json({
+    // res.status(200).json({
+    //   success: true,
+    //   message: "User is created succesfully",
+    //   data: result,
+    // });
+    sendResponse(res, {
+      statusCode: StatusCodes.CREATED,
       success: true,
-      message: "User is created succesfully",
+      message: "User is createddddddd succesfully",
       data: result,
     });
   } catch (err) {
