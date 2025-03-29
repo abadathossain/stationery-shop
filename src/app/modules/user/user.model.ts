@@ -22,7 +22,12 @@ const UserSchema = new Schema<IUser>(
       immutable: true,
     },
     password: { type: String, required: true },
-    role: { type: String, enum: ["admin", "user"], required: true },
+    role: {
+      type: String,
+      enum: ["admin", "user"],
+      default: "user",
+      required: true,
+    },
     userStatus: {
       type: String,
       enum: ["active", "inactive"],

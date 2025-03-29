@@ -13,14 +13,24 @@ const ProductSchema = new Schema<Order>(
       ref: "productId",
       required: true,
     },
+    userId: {
+      type: String,
+      ref: "userId",
+      required: true,
+    },
     quantity: {
       type: Number,
       required: true,
       min: 1,
     },
-    totalPrice: {
+    unitPrice: {
       type: Number,
       required: true,
+      min: 0,
+    },
+    totalPrice: {
+      type: Number,
+
       min: 0,
     },
   },
