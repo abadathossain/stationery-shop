@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-this-alias */
 import { Schema, model } from "mongoose";
 import { IUser } from "./user.interface";
+import bcrypt from "bcrypt";
 
 const UserSchema = new Schema<IUser>(
   {
@@ -21,12 +23,8 @@ const UserSchema = new Schema<IUser>(
       },
       immutable: true,
     },
-    password: { type: String, required: true },
-    balance: {
-      type: Number,
-      default: 0,
-      min: [0, "Balance cannot be negative"],
-    },
+    password: { type: String, required: true, select: false },
+
     role: {
       type: String,
       enum: ["admin", "user"],
@@ -36,7 +34,7 @@ const UserSchema = new Schema<IUser>(
     userStatus: {
       type: String,
       enum: ["active", "inactive"],
-      required: true,
+      optional: true,
     },
   },
   {
@@ -45,17 +43,31 @@ const UserSchema = new Schema<IUser>(
   }
 );
 
-// pre hook
-UserSchema.pre("find", function (this, next) {
-  this.find({ userStatus: { $eq: "active" } });
+// // pre hook
+// UserSchema.pre("find", function (this, next) {
+//   this.find({ userStatus: { $eq: "active" } });
+//   next();
+// });
+
+// // hook -> post
+// UserSchema.post("find", function (docs, next) {
+//   docs.forEach((doc: IUser) => {
+//     doc.name = doc.name.toLowerCase();
+//   });
+//   next();
+// });
+
+UserSchema.pre("save", async function (next) {
+  const user = this;
+  user.password = await bcrypt.hash(
+    user.password,
+    Number(process.env.SALT_ROUNDS)
+  );
   next();
 });
 
-// hook -> post
-UserSchema.post("find", function (docs, next) {
-  docs.forEach((doc: IUser) => {
-    doc.name = doc.name.toLowerCase();
-  });
+UserSchema.post("save", function (doc, next) {
+  doc.password = "";
   next();
 });
 
