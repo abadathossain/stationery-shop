@@ -38,6 +38,7 @@ const ProductSchema = new Schema<Order>(
       enum: ["pending", "completed", "cancelled"],
       default: "pending",
     },
+    stock: { type: Number, required: true, min: 0 },
   },
   {
     timestamps: true,

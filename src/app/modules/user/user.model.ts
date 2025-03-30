@@ -22,6 +22,11 @@ const UserSchema = new Schema<IUser>(
       immutable: true,
     },
     password: { type: String, required: true },
+    balance: {
+      type: Number,
+      default: 0,
+      min: [0, "Balance cannot be negative"],
+    },
     role: {
       type: String,
       enum: ["admin", "user"],
