@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 // 🟢 Define the Zod validation schema for User
-export const userSchema = z.object({
+export const userValidationSchema = z.object({
   name: z
     .string()
     .min(3, { message: "Name must be at least 3 characters long" })
@@ -19,3 +19,7 @@ export const userSchema = z.object({
     })
     .optional(),
 });
+
+export const userValidation = {
+  userValidationSchema,
+};
