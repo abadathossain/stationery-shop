@@ -9,7 +9,26 @@ const register = async (req: Request, res: Response) => {
 
     res.status(200).json({
       success: true,
-      message: "Product is created succesfully",
+      message: "Auth User is created succesfully",
+      data: result,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+      error: err,
+    });
+  }
+};
+const login = async (req: Request, res: Response) => {
+  try {
+    const loginUser = req.body;
+
+    const result = await AuthServices.login(loginUser);
+
+    res.status(200).json({
+      success: true,
+      message: "Auth User is login succesfully",
       data: result,
     });
   } catch (err) {
@@ -23,4 +42,5 @@ const register = async (req: Request, res: Response) => {
 
 export const AuthControllers = {
   register,
+  login,
 };

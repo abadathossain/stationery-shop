@@ -4,11 +4,11 @@ import { UserServices } from "./user.service";
 import sendResponse from "../../utils/sendResponse";
 import { StatusCodes } from "http-status-codes";
 import catchAsync from "../../utils/catchAsync";
-import { userSchema } from "./user.validation";
+import { userValidationSchema } from "./user.validation";
 
 const createUser: RequestHandler = catchAsync(async (req, res, next) => {
   const user = req.body;
-  const zodData = userSchema.parse(user);
+  const zodData = userValidationSchema.parse(user);
   const result = await UserServices.createUserIntoDB(zodData);
   sendResponse(res, {
     statusCode: StatusCodes.CREATED,
