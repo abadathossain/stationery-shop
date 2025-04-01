@@ -2,6 +2,7 @@ import { IUser } from "../user/user.interface";
 import { UserModel } from "../user/user.model";
 import { TLogin } from "./auth.interface";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const register = async (user: IUser) => {
   const result = await UserModel.create(user);
@@ -28,6 +29,12 @@ const login = async (payload: TLogin) => {
   if (!isPasswordMatch) {
     throw new Error("Password is incorrect");
   }
+
+  const token = jwt.sign({ email: user?.email, role: user?.role }, "secret", {
+    expiresIn: "1d",
+  });
+
+  return { token, user };
 };
 
 export const AuthServices = {
