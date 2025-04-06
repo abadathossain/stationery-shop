@@ -2,6 +2,7 @@ import { IUser } from "./user.interface";
 import { UserModel } from "./user.model";
 
 const createUserIntoDB = async (user: IUser) => {
+  // user.role = "admin";
   const result = await UserModel.create(user);
   return result;
 };
