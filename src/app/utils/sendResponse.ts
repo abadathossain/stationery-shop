@@ -3,7 +3,7 @@ type TResponse<T> = {
   statusCode: number;
   success: boolean;
   message: string;
-  // token?: string;
+  token?: string;
   data: T;
 };
 
